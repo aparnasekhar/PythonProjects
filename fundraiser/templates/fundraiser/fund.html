@@ -1,0 +1,131 @@
+{% extends "fundraiser/layout.html" %}
+
+{% block body %}
+<div class="container header-bottom">
+    <header>
+        <h2>Fund</h2>
+    </header>
+  </div>
+  <div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+      <div class="row fund-row">
+          <div class="col-8 left-side">
+              <div class="jumbotron">
+                <div class="end-msg">
+                    {% if request.user == campaign.user and total.total_donation >= campaign.amount_needed %}
+                        {% if campaign.active %}
+                            <form action="{% url 'close' campaign.id %}", method="POST">
+                                {% csrf_token %}
+                                <div class="end-msg" role="alert">Do you want to end this campaign now?</div>
+                                <button type="submit" class="btn btn-danger">End</button>
+                            </form>
+                        {% else %}
+                            <div class="alert alert-info" role="alert">This campaign is ended! You cannot donate.</div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                  <h1 class="">{{ campaign.title }}</h1>
+                  <p class="lead">Fundraising campaign by : {{ campaign.user }}</p>
+                  {% if user.is_authenticated %}
+                    {% if request.user != campaign.user %}
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-link btn-msg" data-toggle="modal" data-target="#create">
+                            Send message to {{ campaign.user }}
+                        </button>
+                    {% else %}
+                        <a class="btn btn-link btn-msg" href="{% url 'profile' user.id  %}">Messages</a>
+                        {% endif %}
+                    {% endif %}
+                  <hr class="my-4">
+                  <div>{{ campaign.description }}</div>
+              </div>
+          </div>
+          <div class="col-4col-4 right-side">
+              <p class="backers-count">{{ donation_count }}</p>
+              <p class="backers-name">Backers</p>
+                <p class="backers-count">
+                    {% if total.total_donation != 0 %}
+                        ${{ total.total_donation }}
+                    {% else %} 
+                        $0 
+                    {% endif %}</p>   
+              <p class="backers-name">donated of ${{ campaign.amount_needed }}</p>
+              <p class="backers-name">End Date : {{ campaign.end_date }}</p>
+              {% if campaign.active %}
+                <span style="font-size: small;">Minimum $2 donation</span><br>
+                <form method="POST" action="{% url 'donate' campaign.id %}">
+                    <div class="form-group row">
+                        {% csrf_token %}
+                        <div class="col-sm-10 input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                        <input type="number" class="form-control" id="donation_amount" name="donation-amount" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                        </div>
+                        </div>
+                    </div>
+                    {% if user.is_authenticated %}
+                        <button type="submit" class="btn btn-warning  btn-donate" >Donate Now </button>
+                    {% else %}
+                        <div class="alert alert-warning" role="alert"> 
+                            Sign in to donate!
+                        </div>
+                    {% endif %}
+                    </form>
+                {% else %}
+                <div class="end-msg"><strong>campaign is ended!</strong></div>
+                {% endif %} 
+                <!--Modal-->
+                <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title heading" id="exampleModalLongTitle">Send message to the fundraiser</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{% url 'fund' campaign.id %}">
+                                    {% csrf_token %}
+                                    <label>Subject</label>
+                                    <input type="text" class="form-control" name="input" value="{{ campaign.title }}">
+                                    <label>Message</label>
+                                    <textarea rows="5" class="form-control" name="textarea" placeholder="Type your message here"></textarea> 
+                                    <br>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-outline-dark save" type="submit" value="Post"> Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+          </div>
+      </div>
+      <h5 class="comment-head">Comments</h5>
+        <ul class="list-group">
+            {% for comment in campaign.comments.all %}
+            <li class="list-group-item list-group-item-light"><b>{{ comment.commenter}} : </b> {{ comment.comment }}</li>
+            {% endfor %}
+        </ul>
+        {% if user.is_authenticated%}
+        <form action="{% url 'addComment' campaign.id %}", method="POST">
+            <div class="form-group">
+                {% csrf_token %}
+                <textarea class="form-control" name="comment" rows="3" placeholder="Add comments here" required></textarea>
+                <button type="submit" class="btn btn-comment btn-warning">Comment</button>
+            </div>
+            
+        </form>
+    {% else %}
+        <p>Sign in to add comments!</p>
+    {% endif %}
+  </div>
+  {% endblock %}

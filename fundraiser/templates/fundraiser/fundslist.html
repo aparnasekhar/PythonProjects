@@ -1,0 +1,75 @@
+{% extends "fundraiser/layout.html" %}
+
+{% block body %}
+<div class="container header-bottom">
+    <header>
+        <h2>Fundraisers</h2>
+    </header>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2 class="work-head">{{ title }}</h2>
+        {% for campaign in page_obj %}
+        <div class="card">
+          <div class="card-header">Last date: {{ campaign.end_date }}</div>
+              <div class="card-body">
+                <h5><a class="card-title" href="{% url 'fund' campaign.id %}">{{ campaign.title }}</a></h5>
+                <p class="card-text card-desc">{{ campaign.description|truncatechars:100 }}</p>
+                <a href="{% url 'fund' campaign.id %}">Read More</a>
+              </div>
+          </div>
+        {% endfor %}
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+              <li class="page-item"><a href="?page=1" class="page-link">&laquo; First</a></li>
+              <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a></li>
+          {% else %}
+          <li class="page-item disabled"><a class="page-link">&laquo; First</a></li>
+          <li class="page-item disabled"><a class="page-link">Previous</a></li>
+          {% endif %}
+              
+          {% if page_obj.number %}
+          <li class="page-item"><a class="page-link">{{ page_obj.number }}</a></li>
+          {% else %}
+          <li class="page-item"><a class="page-link">0</a></li>
+          {% endif %}
+      
+          {% if page_obj.has_next %}
+          <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a></li>
+          <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last &raquo;</a></li>
+          {% else %}
+          <li class="page-item disabled"><a class="page-link">Next</a></li>
+          <li class="page-item disabled"><a class="page-link">Last &raquo;</a></li>
+          {% endif %}
+      </ul>
+      </div>
+      <div class="col-sm-4 category-list">
+        <h4 class="work-head">Categories</h4>
+        {% for category in categories %}
+        <ul class="list-group">
+          <li class="list-group-item"><a href="{% url 'categoryfunds' category %}">{{ category }}</a></li>
+          </ul>
+        {% endfor %}
+        <a href="{% url 'fundlist' %}" class="list-group-item list-group-item-action active">
+          See all Campaigns
+        </a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="card text-center footer">
+        <div class="card-header">
+           Follow Us 
+        </div>
+        <div class="card-body footer">
+          <h5 class="card-title">Why RaiseAfund?</h5>
+          <p class="card-text">RaiseAfund is a funding website that lets you raise money for anything that matters to you. From personal causes and events to projects and more</p>
+          <a href="{% url 'fundlist' %}" class="btn btn-warning">Campigns</a>
+        </div>
+        <div class="card-footer text-muted">
+            © 2020 Copyright: All Rights Reserved
+        </div>
+      </div>
+</footer>
+{% endblock %}
