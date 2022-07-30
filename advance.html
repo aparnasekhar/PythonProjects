@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.jpg" />
+        <title>Google Advance Search</title>
+    </head>
+    <body>
+        <div class="advance-nav">
+            <img src="logo.png" alt="googlelogo">
+            <a href="index.html">Google Search</a>
+        </div>
+        <h3>Advanced Search</h3>
+        <div class="row1"> 
+            <span class="left-span">Find pages with...</span>
+            <span class="right-span">To do this in the search box.</span>
+        </div>
+        <form action="https://google.com/search">
+            <div class="row">
+                <div class="col-25">
+                    <label for="allwords">all these words:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" value autofocus="autofocus" name="as_q"> 
+                </div>
+                <span class="row-span">Type the important words: tri-colour rat terrier</span>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="exactwords">this exact word or phrase:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="as_epq">
+                </div>
+                <span class="row-span">Put exact words in quotes: "rat terrier"</span>
+            </div>    
+            <div class="row">
+                <div class="col-25">
+                    <label for="anywords">any of these words:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="as_oq">
+                </div>
+                <span class="row-span">Type OR between all the words you want: miniature OR standard</span>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="none">none of these words:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="as_eq">
+                </div>
+                <span class="row-span">Put a minus sign just before words that you don't want: -rodent, -"Jack Russell"</span>
+            </div>
+            <div class="button">
+                <button  class="advance" type="submit" value="Advanced Search">Advanced Search</button>
+            </div>   
+        </form>
+    </body>
+</html>
