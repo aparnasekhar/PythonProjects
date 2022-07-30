@@ -1,0 +1,58 @@
+body {
+    padding: 10px;
+}
+.row{
+    padding-top: 30px;
+}
+.media-body {
+    padding-top: 70px;
+}
+.mr-3 {
+    border: 1px solid #cccccc;
+    margin: 30px;
+    padding: 10px;
+    width: 400px;
+    height: 400px;
+}
+.current_bid {
+    color: #0066ff;
+}
+.col-sm-9 h4 {
+    color:  #e60000;
+}
+.list-bottom {
+    padding-left: 30px;
+    padding-top: 30px;
+}
+.list-comment {
+    margin: 20px;
+}
+.form-control {
+    width: 50%;
+}
+.btn-comment {
+    margin-left: 20px;
+}
+.category {
+    padding: 30px;
+}
+.cat-head, .create-list {
+    padding: 20px;
+}
+.category ul {
+    list-style: none;
+}
+.createbtn{
+    margin: 20px;
+}
+.alert-success {
+    margin-left: 10px;
+}
+.card-body h6{
+    color:  #e60000;
+}
+.col-md-4 {
+    border: 1px solid #cccccc ;
+    margin: 5px;
+    border-radius: 10px;
+}

@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for auction in auctions reversed %}
+            {% if auction.active %}
+                <div class="col-md-4">
+                    <img class="ard-img-top w-100" src="{% if auction.image_url %}{{ auction.image_url }}{% else %}https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png
+                    {% endif %}", alt="Listing Image">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'listing' auction.id %}">{{ auction.title }}</a></h5>
+                        <p>{{ auction.description|truncatechars:60 }}</p>
+                        <h6>${{ auction.starting_bid }}</h5>
+                        <p class="card-text"><small class="text-muted">Created by {{ auction.owner }}</small></p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+     
+{% endblock %}
