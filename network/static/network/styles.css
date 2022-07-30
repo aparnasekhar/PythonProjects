@@ -1,0 +1,54 @@
+.container {
+    margin-top: 30px;
+}
+.addpost {
+    width: 50%;
+    background-color: #17a2b8;
+    margin-bottom: 20px;
+}
+.card-header a {
+    text-decoration: none;
+    color: #17a2b8;
+    position: relative;
+}
+.follows {
+    background-color: transparent;
+    border: none;
+    cursor: none;
+}
+
+.profile {
+    padding: 10px; 
+    background-color: white; 
+    margin: 6px;
+    text-align: center;
+    position: relative;
+}
+.btn-follow {
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-top: 10px;  
+}
+.btn-link, .heading {
+    color: #17a2b8;
+}
+.fa-heart {
+    margin-right: 5px;
+}
+.save {
+    background-color: #17a2b8;
+    color: white;
+    border: white;
+}
+.edit {
+    position: absolute;
+    left: 95%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-top: 20px; 
+    background-color: #17a2b8;
+    color: white;
+    padding: 0 5px 0 5px;
+}
