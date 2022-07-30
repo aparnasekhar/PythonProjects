@@ -1,0 +1,100 @@
+body {
+    font-family: "Gotham SSm A","Gotham SSm B",Arial,sans-serif;
+    color: #666666;
+}
+.header {
+     margin-top: 10px;
+}
+.logo-main {
+    font-size: 50px;
+}
+.left-nav {
+    margin-top: 10px;
+}
+.left-nav a:hover {
+    border: 2px solid #e4002b;
+}
+.nav-second {
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0;
+    border-bottom: 1px solid #666666;
+}
+
+.navbar-nav li:last-child {
+    border-right:0;
+} 
+.carousel-item {
+    height: 300px;
+    width: 100%;
+}
+.slide, .listing {
+    margin-top: 20px;
+}
+.heading {
+    border-bottom: 1px solid #666666;
+    padding: 10px;
+    margin-bottom: 30px;
+    color: #e4002b;
+}
+.cat-list {
+    width: 18rem;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+a {
+    color: #666666;
+    text-decoration: none;
+}
+a:hover, .btn-watch:hover {
+    color: #e4002b;
+    text-decoration: none;
+}
+.bid-num {
+    margin: 10px;
+    background-color: #e6e6e6;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: small;
+}
+
+.bid-form {
+    margin-top: 30px;
+    position: relative;
+}
+.btn-bid {
+    position: absolute;
+    left: 40%;
+    background-color: #e4002b;
+    color: white;
+}
+.btn-bid:hover {
+    border: 2px solid #e4002b;
+    color: #e4002b;
+    background-color: white;
+}
+.text-left {
+    color: #666666;
+    font-size: 25px;
+}
+.text-left:hover {
+    color: #e4002b;
+    outline: none;
+}
+.left-side {
+    margin-top: 30px;
+}
+.bid-form input:focus {
+    border: 1px solid #e4002b;
+    outline: none;
+}
+.btn-comment {
+    border: 2px solid #e4002b;
+    color: #e4002b;
+    margin-bottom: 10px;
+}
+.btn-comment:hover {
+    color: white;
+    background-color: #e4002b;
+}

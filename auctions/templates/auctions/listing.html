@@ -1,0 +1,101 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="media">
+    <img class="align-self-center mr-3" src="{% if auction.image_url %}{{ auction.image_url }}{% else %}https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png
+    {% endif %}", alt="Listing Image">
+    <div class="media-body">
+        <h2>{{ auction.title }}</h2><hr>
+        {% for bid in auction.bid.all %}
+            {% if forloop.last %}
+                {% if auction.active == False %}
+                    {% if request.user == bid.user %} 
+                        <h4>Congradulations! You won this auction for <h3 class="current_bid">${{ bid.bid_price }}</h3></h4>
+                    {% else %}
+                        <h4>Sold to  {{ bid.user }} for <h3 class="current_bid">${{ bid.bid_price }}</h3></h4>
+                    {% endif %}
+                {% else %}
+                    Current bid is <h3 class="current_bid">${{ bid.bid_price }} </h3>by {{ bid.user }}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        
+        <dl class="row">
+            <dt class="col-sm-3">Details</dt>
+            <dd class="col-sm-9"> {{ auction.description }}</dd>
+            <dt class="col-sm-3">Category</dt>
+            <dd class="col-sm-9"> {{ auction.category }}</dd>
+            <dt class="col-sm-3">Starting bid</dt>
+            <dd class="col-sm-9"><h4>${{auction.starting_bid }}</h4></dd>
+            <dt class="col-sm-3">Owner</dt>
+            <dd class="col-sm-9"> {{ auction.owner }}</dd>
+        </dl>
+        {% if user.is_authenticated %}
+            {% if auction.active %}
+                <form action="{% url 'watchlist' auction.id %}", method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link">{% if is_watchlist %}Remove from Watchlist{% else %}Add to Watchlist{% endif %}</button>
+                </form>
+            {% endif %}
+        {% else %}
+            <p>Sign In to add to your watchlist!</p> 
+        {% endif %}
+        
+        {% if request.user == auction.owner %}
+            {% if auction.active %}
+                <form action="{% url 'closeList' auction.id %}", method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger close-btn">Close Auction</button>
+                </form>
+            {% else %}
+                <div class="alert alert-info" role="alert">This auction is closed!</div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div><hr>
+<div class="list-bottom">
+    {% if user.is_authenticated %}
+        {% if auction.active %}
+            <form action="{% url 'createBid' auction.id %}" method="POST" class="form-inline">
+                <div class="form-group mx-sm-3 mb-2">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" placeholder="Add your bid here" name="bid_price" required>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2"> Submit </button>
+            </form>
+            {% if messages %}
+                <div class="alert alert-success" role="alert">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        <p>Sign in to place bid!</p> 
+    {% endif %}
+    <div class="list-comment">
+        <h4>Comments</h4>
+        {% for comment in auction.comments.all %}
+            <strong>{{ comment.commenter}}</strong>
+            <p>{{ comment.comment }}</p>
+        {% empty %}
+            <p>There is no comments</p>
+        {% endfor %}
+
+        {% if user.is_authenticated%}
+            {% if auction.active %}
+                <form action="{% url 'addComment' auction.id %}", method="POST">
+                    <div class="form-group"></div>
+                        {% csrf_token %}
+                        <textarea class="form-control" name="comment", placeholder="Add comments here"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-comment">Comment</button>
+                </form>
+            {% endif %}
+        {% else %}
+            <p>Sign in to add comments!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
