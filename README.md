@@ -10,10 +10,6 @@ This is the final project for CS50's Web Programming with Python and JavaScript.
 - All the campaigns are listed in the fundlist page(fundlist.html). Category wise listing is also there in the same page.
 - In the user profile page(profile.html) users can see the campaigns created by them, their donations to other campaigns and messages from the other users. These all are done in     a single page using javascript.
 - This web app is mobile responsive.
-
-- `Main Directory`
-
-	@@ -20,7 +25,10 @@ This is the final project for CS50's Web Programming with Python and JavaScript.
 - `Templates` - Holds all html files.
 
 #### Justification
