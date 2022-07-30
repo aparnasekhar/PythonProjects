@@ -1,0 +1,189 @@
+body {
+    font-family: "proxima-nova", "proxima-soft",verdana;
+}
+.container, .msg-ul {
+    margin-top: 20px;
+}
+.nav-link {
+    color: white;
+}
+.fund-link {
+    border: 1px solid #ff9900;
+    color: #ff9900;
+}
+.nav-link:hover {
+    background-color: #ff9900;
+    color: white;
+}
+
+.btn-contact {
+    float: right;
+    background-color: #ff9900;
+    border-radius: 50px;
+    color: white;
+    margin: 10px;
+}
+.btn-contact:hover {
+    border: 2px solid #ff9900;
+    color: #ff9900;
+    background-color: white;
+}
+.header, .work-head, .working, .card, .profile, .btn-login, .end-msg {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card-title, .btn-msg {
+    color:  #ff9900;
+}
+
+.card-img {
+    width: 100%;
+    filter: blur(5px);
+  -webkit-filter: blur(8px);
+
+}
+.text-white {
+    position: relative;
+}
+.card-img-overlay {
+    position: absolute;
+    top: 20%;
+    text-align: center;
+}
+.slide-head {
+    color: #990033;
+    font-size: 5vw;
+}
+.btn-warning {
+    color: white;
+    font-weight: bold;
+}
+.working div{
+    border: 3px solid#003366;
+    margin: 10px;
+    border-radius: 50px;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    color:  #00264d;
+}
+.header-bottom {
+    background-color: #003366;
+    color: white;
+    padding: 10px;
+}
+.header-bottom h2 {
+    text-align: center;
+    font-weight: bold;
+    color: #ff9900;
+}
+.backers-count {
+    color:  #003366;
+    font-size: 30px;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+.backers-name {
+    color:  #003366;
+}
+.btn-donate {
+    background-color:  #ff9900;
+    margin-top: 5px;
+}
+.createbtn {
+    background-color:  #ff9900;
+    margin-top: 5px;
+    float: right;
+    right: 50%;
+}
+.comment-head {
+    color: #003366;
+    margin-top: 20px;
+}
+.category-list {
+    margin-top: 10px;
+}
+.index-link {
+    text-align: right;
+    margin-left: 400px;
+}
+.footer {
+    background-color: #333333;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.footer .card-header, .footer .card-body { 
+    color: white;
+}
+.loginForm {
+    width: 40%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+.btn-create {
+    width: 70%;
+}
+.msg-body{
+    background-color: #ffd699;
+    border-radius: 10px;
+    padding: 10px;
+}
+.unread {
+    color: #ff9900;
+    font-weight: bold;
+}
+.unread:hover,.chat-list:hover  {
+    border: 1px solid #ff9900;
+}
+.chat-list {
+    cursor: pointer;
+}
+.profile-btn {
+    color:  #ff9900;
+}
+.btn-comment {
+    margin-top: 10px;}
+
+@media screen and (max-width: 800px) {
+    .col-sm  {
+      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+    }
+    .card {
+        width: 100%;
+        height: 150px;
+    }
+    .card-img-overlay {
+        top: 0;
+    }
+    .card-desc {
+        display: none;
+    }
+    .footer, .msg-card {
+        height: 350px;
+    }
+    .fund-row, .left-side, .jumbotron {
+        width: 100%;
+    }
+    .fund-row {
+        margin: 20px;
+    }
+    .header {
+        height: 175px;
+    }
+    .btn-contact {
+        float: left;
+        margin-left: 50px;
+    }
+    .loginForm {
+        min-width: 90%;
+        top: 70%;
+    }
+    
+  }
+  

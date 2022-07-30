@@ -1,0 +1,58 @@
+{% extends "fundraiser/layout.html" %}
+{% load static %}
+{% block body %}
+<div class="card bg-dark text-white">
+    <img src="{% static 'fundraiser/images/Fundraising.jpg' %}" class="card-img" alt="Fundraising">
+    <div class="card-img-overlay">
+      <h2 class="card-title slide-head">Online Fundraising</h2>
+      <p class="card-text" style="font-size: 2vw;"><b>Fast, easy & trusted by millions - create your page for free!</b></p>
+      <a href="{% if user.is_authenticated %} 
+      {% url 'create' %} {% else %} {% url 'login' %}{% endif %} " class="btn btn-warning">START FUNDRAISING</a>
+    </div>
+  </div>
+  <div class="container">
+    <h2 class="work-head card-title">How it works</h2>
+    <div class="row working">
+      <div class="col-sm">
+        Create your page in easy steps
+      </div>
+      <div class="col-sm">
+        Share it with your world and beyond
+      </div>
+      <div class="col-sm">
+        Accept donations instantly with credit / debit cards
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3"> 
+      {% for campaign in campaigns %}
+        <div class="col mb-4">
+          <div class="card h-100">
+              <div class="card-body">
+                  <h4><a href="{% url 'fund' campaign.id %}" class="card-title"><b>{{ campaign.title }}</b></a></h4>
+                <p class="card-text">{{ campaign.description|truncatechars:100 }}</p>
+                  <a href="{% url 'fund' campaign.id %}">Read More</a>
+              </div>
+              <div class="card-footer">
+                  <small class="text-muted">Last date: {{ campaign.end_date }}</small>
+              </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+</div>
+<footer>
+  <div class="card text-center footer">
+      <div class="card-header">
+         Follow Us 
+      </div>
+      <div class="card-body footer">
+        <h5 class="card-title">Why RaiseAfund?</h5>
+        <p class="card-text">RaiseAfund is a funding website that lets you raise money for anything that matters to you. From personal causes and events to projects and more</p>
+        <a href="{% url 'fundlist' %}" class="btn btn-warning">Campigns</a>
+      </div>
+      <div class="card-footer text-muted">
+          © 2020 Copyright: All Rights Reserved
+      </div>
+    </div>
+</footer>
+{% endblock %}
